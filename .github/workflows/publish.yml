@@ -22,5 +22,6 @@ jobs:
         with:
           PROJECT_FILE_PATH: GoLive.Generator.StronglyTypedEmbeddedResources/GoLive.Generator.StronglyTypedEmbeddedResources.csproj
           VERSION_FILE_PATH: Directory.build.props
+          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
           NUGET_KEY: ${{secrets.NUGET_KEY}}
           INCLUDE_SYMBOLS: false
