@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Class2.cs" />
+      <EmbeddedResource Include="Class2.cs" />
+      <None Remove="Folder1\ChildItem.txt" />
+      <EmbeddedResource Include="Folder1\ChildItem.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\GoLive.Generator.StronglyTypedEmbeddedResources\GoLive.Generator.StronglyTypedEmbeddedResources.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+</Project>

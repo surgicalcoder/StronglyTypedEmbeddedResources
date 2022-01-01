@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>9.0</LangVersion>
+        <IsRoslynComponent>true</IsRoslynComponent>
+
+
+        <PackageId>GoLive.Generator.StronglyTypedEmbeddedResources</PackageId>
+        <Authors>SurgicalCoder</Authors>
+        <Company>N/A</Company>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>
+            .net standard 2.0 generator for strongly named Embedded Resource names.
+        </Description>
+        <Copyright>Copyright 2022 - SurgicalCoder</Copyright>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <GenerateRepositoryUrlAttribute>true</GenerateRepositoryUrlAttribute>
+        <PackOnBuild>true</PackOnBuild>
+        <PackFolder>analyzers\cs</PackFolder>
+        <IsRoslynComponent>true</IsRoslynComponent>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <DevelopmentDependency>true</DevelopmentDependency>
+        <PackageProjectUrl>https://github.com/surgicalcoder/StronglyTypedEmbeddedResources</PackageProjectUrl>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
+        <PackageReference Include="VsTools.Projects" Version="1.2.0" GeneratePathProperty="true" PrivateAssets="all" />
+    </ItemGroup>
+    <PropertyGroup>
+        <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+    </PropertyGroup>
+    <Target Name="GetDependencyTargetPaths" AfterTargets="ResolvePackageDependenciesForBuild">
+        <ItemGroup>
+            <TargetPathWithTargetPlatformMoniker Include="$(PKGVsTools_Projects)\lib\netstandard2.0\VsTools.Projects.dll" IncludeRuntimeDependency="false" />
+            <TargetPathWithTargetPlatformMoniker Include="@(ResolvedCompileFileDefinitions)" IncludeRuntimeDependency="false" />
+        </ItemGroup>
+    </Target>
+    <ItemGroup>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+        <None Include="..\README.md">
+          <Pack>True</Pack>
+          <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>
